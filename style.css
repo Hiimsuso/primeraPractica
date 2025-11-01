@@ -12,7 +12,7 @@ html, body { margin: 0; padding: 0; }
   --color-fondo: #0f172a;
   --color-texto: #e5e7eb;
   --color-acento: #22d3ee;
-  --ancho-maximo: 960px;
+  --ancho-maximo: 860px;
 }
 
 body {
