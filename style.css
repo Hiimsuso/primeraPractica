@@ -88,3 +88,73 @@ main {
     border-radius: 8px;
   }
   
+
+#contacto form{
+    max-width: 520px;        
+    display: grid;
+    gap: 1rem;                
+  }
+  
+  #contacto .campo{
+    display: grid;            
+    gap: .35rem;
+  }
+  
+  #contacto label{
+    font-weight: 600;
+  }
+  
+  #contacto input,
+  #contacto textarea{
+    width: 100%;
+    padding: .6rem .8rem;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: .5rem;
+    background: rgba(255,255,255,.06);
+    color: var(--color-texto);
+  }
+  
+  #contacto input:focus,
+  #contacto textarea:focus{
+    outline: 2px solid var(--color-acento);
+    outline-offset: 2px;
+  }
+  
+  #contacto button{
+    width: fit-content;
+    padding: .6rem 1rem;
+    border: 0;
+    border-radius: .5rem;
+    background: var(--color-acento);
+    color: #0b1220;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  #contacto button:hover{
+    filter: brightness(1.05);
+  }
+  
+  footer nav{
+    max-width: var(--ancho-maximo);   
+    margin: 0 auto;                   
+    padding: 0 1rem;
+  }
+  
+  footer nav ul{
+    list-style: none;
+    display: flex; 
+    gap: 1rem;
+    justify-content: center;         
+    flex-wrap: wrap;                   
+    margin: 0; 
+    padding: 0;
+  }
+  
+  footer nav a{
+    color: var(--color-texto);
+    text-decoration: none;
+    padding: .25rem .5rem;
+  }
+  footer nav a:hover{
+    color: var(--color-acento);
+  }

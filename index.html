@@ -18,7 +18,8 @@
       <ul>
         <li><a href="#quien-soy">Quién soy</a></li>
         <li><a href="#portafolio">Portafolio</a></li>
-        <li><a href="#contacto">Datos personales</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#Redes-sociales">Redes sociales</a></li>
       </ul>
     </nav>
   </header>
@@ -26,10 +27,11 @@
   <main>
 
     <section class="hero" aria-labelledby="hero-title">
-      <h2 id="hero-title">El rincón del ingeniero</h2>
+        <img src="1748532727080.jpeg" alt="foto yo" width="400" height="400">
+      <h2 id="hero-title">El rinconcito de Jesús</h2>
       <p>Portafolio personal</p>
     </section>
-
+    <br>
     <section id="quien-soy">
       <h2>Quién soy</h2>
       <p>Hola, soy Jesús Cuenca y soy ingeniero químico. Trabajo en Ale-Hop en la parte de creación de aplicaciones y quiero aprender a programar por mi propia cuenta sin tener que depender de la IA al 100%.</p>
@@ -70,22 +72,37 @@
     </section>
 
     <section id="contacto">
-      <h2>Datos personales</h2>
-      <ul>
-        <li><a href="https://www.linkedin.com/in/jes%C3%BAs-cuenca-mengual-3b0035161/">Este es mi LinkedIn</a></li>
-        <li>Mi correo electrónico es suso3543@gmail.com</li>
-        <li>Lugar de residencia: Piles (Valencia)</li>
-      </ul>
+      <h2>Contacto</h2>
+      <form action="mailto:correoficticio@gmail.com" method="post">
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+        </div>
+      
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+      
+        <div class="campo">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+        </div>
+      
+        <button type="submit">Enviar</button>
+      </form>
     </section>
   </main>
-
+  <br>
   <footer>
+    <section id="Redes-sociales">
     <nav aria-label="Navegación del pie de página">
       <ul>
-        <li><a href="#quien-soy">Quién soy</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="https://www.linkedin.com/in/jes%C3%BAs-cuenca-mengual-3b0035161/">Este es mi LinkedIn</a></li>
+        <li><a href="#copyright">Copyright</a></li>
       </ul>
     </nav>
+    </section>
   </footer>
 </body>
 </html>
