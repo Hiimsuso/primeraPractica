@@ -1,20 +1,37 @@
-/* selector {
-    propiedad: valor;
-    propiedad: valor;
-} */
-
-
+/*
+=========================
+   0) RESET BÁSICO
+   - Normaliza el modelo de caja y elimina márgenes por defecto.
+=========================
+*/
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
 
+/*
+=========================
+   1) VARIABLES GLOBALES (:root)
+   - Paleta y tamaños reutilizables en todo el sitio.
+=========================
+*/
 :root {
-  --color-fondo: #0f172a;
-  --color-texto: #e5e7eb;
-  --color-acento: #22d3ee;
-  --ancho-maximo: 860px;
+  --color-fondo: #0f172a;    /* fondo oscuro base */
+  --color-texto: #e5e7eb;    /* texto principal legible sobre fondo oscuro */
+  --color-acento: #22d3ee;   /* color de énfasis (hover, botones, enlaces) */
+  --ancho-maximo: 860px;     /* ancho máximo del contenedor de lectura */
 }
 
+
+/*
+=========================
+   2) BASE: BODY
+   - Aplica tema, tipografía del sistema y legibilidad global.
+========================= 
+Estilos base del <body>:
+- Aplica el tema (fondo/texto) usando variables globales.
+- Define una tipografía del sistema para rendimiento y coherencia.
+- Mejora la legibilidad con un interlineado cómodo.
+*/
 body {
   background: var(--color-fondo);
   color: var(--color-texto);
@@ -22,6 +39,17 @@ body {
   line-height: 1.6;
 }
 
+
+/*
+=========================
+   3) CONTENEDOR PRINCIPAL (MAIN)
+   - Limita ancho, centra y añade respiración al contenido.
+========================= 
+Contenedor principal:
+- Limita el ancho para mejorar la lectura.
+- Centra el bloque en la página.
+- Añade respiración interna en vertical y horizontal.
+*/
 main {
   max-width: var(--ancho-maximo);
   margin: 0 auto;
@@ -29,11 +57,31 @@ main {
 }
 
 
+/*
+=========================
+   4) HERO / CABECERA DE PÁGINA
+   - Presentación inicial centrada y separada del resto.
+========================= 
+Sección de presentación:
+- Centra el contenido (títulos, subtítulos, imagen).
+- Deja separación con lo que viene después.
+*/
 .hero {
   text-align: center;
   margin-bottom: 2rem;
 }
 
+
+/*
+=========================
+   5) HEADER (BARRA SUPERIOR)
+   - Layout en una fila; sticky para que quede visible al hacer scroll.
+========================= 
+Header:
+- Flex para colocar marca y navegación en una línea.
+- Sticky para fijarlo arriba al hacer scroll.
+- Fondo sólido y borde inferior sutil para separar del contenido.
+*/
 .encabezado{
   display: flex;
   align-items: center;
@@ -44,7 +92,17 @@ main {
   border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
-/* Menú en horizontal */
+
+/* 
+=========================
+   6) NAVEGACIÓN (MENÚ SUPERIOR)
+   - Lista horizontal, sin viñetas, con separación y hover de acento.
+========================= 
+Navegación principal:
+- Quita estilos por defecto de la lista.
+- Muestra los ítems en fila con espacio entre ellos.
+- Enlaces con área clicable cómoda y color de acento al hover.
+*/
 .encabezado nav ul{
   list-style: none;
   display: flex;
@@ -63,98 +121,241 @@ main {
   color: var(--color-acento);
 }
 
-#portafolio{
-    display: grid;                                  
-    gap: 1rem;                                       
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                                                    
-    align-items: start;                               
-  }
-  
-  #portafolio > h2{
-    grid-column: 1 / -1;                            
-  }
-  
-  .proyecto{
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 10px;
-    padding: .75rem;
-    background: rgba(255,255,255,.04);
-  }
-  .proyecto img{
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-  }
-  
 
+/* =========================
+   7) PORTAFOLIO (GRID DE PROYECTOS)
+   - Rejilla responsive con tarjetas limpias.
+========================= 
+Grid responsive:
+- Crea tantas columnas como quepan (min 260px por tarjeta).
+- Alinea el contenido de cada celda al inicio.
+*/
+#portafolio{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: start;
+}
+
+/*
+Título del bloque:
+- Ocupa todo el ancho de la grid.
+*/
+#portafolio > h2{
+  grid-column: 1 / -1;
+}
+
+/*
+Tarjeta de proyecto:
+- Borde y fondo sutiles con esquinas redondeadas.
+- Imagen adaptativa y sin “espacio fantasma”.
+*/
+.proyecto{
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 10px;
+  padding: .75rem;
+  background: rgba(255,255,255,.04);
+}
+.proyecto img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+
+/* =========================
+   8) FORMULARIO DE CONTACTO
+   - Layout en grid, campos accesibles y foco visible.
+========================= 
+Formulario:
+- Ancho legible.
+- Grid para separar filas con gap consistente.
+*/
 #contacto form{
-    max-width: 520px;        
-    display: grid;
-    gap: 1rem;                
-  }
-  
-  #contacto .campo{
-    display: grid;            
-    gap: .35rem;
-  }
-  
-  #contacto label{
-    font-weight: 600;
-  }
-  
-  #contacto input,
-  #contacto textarea{
-    width: 100%;
-    padding: .6rem .8rem;
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: .5rem;
-    background: rgba(255,255,255,.06);
-    color: var(--color-texto);
-  }
-  
-  #contacto input:focus,
-  #contacto textarea:focus{
-    outline: 2px solid var(--color-acento);
-    outline-offset: 2px;
-  }
-  
-  #contacto button{
-    width: fit-content;
-    padding: .6rem 1rem;
-    border: 0;
-    border-radius: .5rem;
-    background: var(--color-acento);
-    color: #0b1220;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  #contacto button:hover{
-    filter: brightness(1.05);
-  }
-  
-  footer nav{
-    max-width: var(--ancho-maximo);   
-    margin: 0 auto;                   
-    padding: 0 1rem;
-  }
-  
-  footer nav ul{
-    list-style: none;
-    display: flex; 
-    gap: 1rem;
-    justify-content: center;         
-    flex-wrap: wrap;                   
-    margin: 0; 
-    padding: 0;
-  }
-  
-  footer nav a{
-    color: var(--color-texto);
-    text-decoration: none;
-    padding: .25rem .5rem;
-  }
-  footer nav a:hover{
-    color: var(--color-acento);
-  }
+  max-width: 520px;
+  display: grid;
+  gap: 1rem;
+}
+
+/*
+Campo (label + control):
+- Agrupa con separación interna.
+*/
+#contacto .campo{
+  display: grid;
+  gap: .35rem;
+}
+
+/*
+Label:
+- Más peso para legibilidad y accesibilidad.
+*/
+#contacto label{
+  font-weight: 600;
+}
+
+/*
+Inputs y textarea:
+- Llenan el ancho, estilo acorde al tema oscuro y buen contraste.
+*/
+#contacto input,
+#contacto textarea{
+  width: 100%;
+  padding: .6rem .8rem;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: .5rem;
+  background: rgba(255,255,255,.06);
+  color: var(--color-texto);
+}
+
+/*
+Foco:
+- Contorno de alto contraste y separado del borde (outline-offset).
+*/
+#contacto input:focus,
+#contacto textarea:focus{
+  outline: 2px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+/*
+Botón:
+- Tamaño contenido, contraste alto y ligerísimo realce al hover.
+*/
+#contacto button{
+  width: fit-content;
+  padding: .6rem 1rem;
+  border: 0;
+  border-radius: .5rem;
+  background: var(--color-acento);
+  color: #0b1220;
+  font-weight: 700;
+  cursor: pointer;
+}
+#contacto button:hover{
+  filter: brightness(1.05);
+}
+
+
+/*
+=========================
+   9) FOOTER (NAVEGACIÓN INFERIOR)
+   - Centrado, envolvente y coherente con el tema.
+========================= 
+Contenedor del nav de footer:
+- Mismo ancho máximo que el main y centrado.
+*/
+footer nav{
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/*
+Lista de enlaces:
+- Horizontal, centrada y con salto de línea si no cabe.
+*/
+footer nav ul{
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Enlaces del footer:
+- Coherencia visual con el header; acento al hover.
+*/
+footer nav a{
+  color: var(--color-texto);
+  text-decoration: none;
+  padding: .25rem .5rem;
+}
+footer nav a:hover{
+  color: var(--color-acento);
+}
+
+
+/* 
+=========================
+   10) UTILIDADES DE ACCESIBILIDAD
+   - .sr-only: contenido solo para lectores de pantalla.
+========================= 
+Oculta visualmente pero mantiene accesible a tecnologías asistivas.
+Útil para títulos/descr. que no quieres mostrar visualmente.
+*/
+.sr-only{
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+
+/*
+=========================
+   11) FOOTER (BLOQUE + INTERACCIÓN)
+   - Fondo, borde superior, y hover suave en enlaces.
+========================= 
+Bloque footer:
+- Separación respecto al contenido, fondo ligeramente más oscuro
+  y línea superior sutil para delimitar.
+*/
+footer{
+  margin-top: 2rem;
+  background: #0b1220;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: var(--color-texto);
+}
+
+/*
+Sección interna:
+- Limita el ancho y añade padding cómodo.
+*/
+footer > section{
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+
+/*
+Interacción de enlaces:
+- Color de acento y leve fondo al pasar el ratón.
+*/
+footer nav a{
+  transition: color .2s ease, background-color .2s ease, transform .2s ease;
+}
+footer nav a:hover{
+  color: var(--color-acento);
+  background: rgba(255,255,255,.06);
+  transform: translateY(-1px);
+}
+
+/*
+Línea inferior de copyright (si la usas):
+- Separador punteado, tipografía un poco más pequeña y centrada.
+*/
+.footer__bottom{
+  border-top: 1px dashed rgba(255,255,255,.15);
+  margin-top: 1rem;
+  padding-top: .9rem;
+  font-size: .9rem;
+  color: rgba(229,231,235,.85);
+  text-align: center;
+}
+
+
+/*
+=========================
+   12) RESPONSIVE FINO
+   - Ajuste de padding de enlaces en pantallas pequeñas.
+=========================
+*/
+@media (max-width: 480px){
+  footer nav a{ padding: .3rem .5rem; }
+}
