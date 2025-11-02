@@ -1,7 +1,18 @@
 /*
+
+etiqueta --> se llama directamente. Por ejemplo: h1 { color: red; }
+id --> se llama con el símbolo #. Por ejemplo: #mi-id { color: blue; }
+clase --> se llama con el símbolo ".". Por ejemplo: .mi-clase { color: green; }
+* --> se aplica a todos los elementos. Por ejemplo: * { margin: 0; padding: 0; }
+Se puede dara estilo a varias a la vez. Por ejemplo: #contacto input,#contacto textarea
+
+*/
+
+/*
 =========================
    0) RESET BÁSICO
    - Normaliza el modelo de caja y elimina márgenes por defecto.
+   - El selector * aplica la propiedad a todos los elementos del documento, a menos que esos elementos tengan otra regla más específica que cambie el valor.
 =========================
 */
 * { box-sizing: border-box; }
@@ -12,13 +23,14 @@ html, body { margin: 0; padding: 0; }
 =========================
    1) VARIABLES GLOBALES (:root)
    - Paleta y tamaños reutilizables en todo el sitio.
+   - Son "constantes" que podemos llamar para reutilizar y agilizar cambios.
 =========================
 */
 :root {
-  --color-fondo: #0f172a;    /* fondo oscuro base */
-  --color-texto: #e5e7eb;    /* texto principal legible sobre fondo oscuro */
-  --color-acento: #22d3ee;   /* color de énfasis (hover, botones, enlaces) */
-  --ancho-maximo: 860px;     /* ancho máximo del contenedor de lectura */
+  --color-fondo: #0f172a;    
+  --color-texto: #e5e7eb;    
+  --color-acento: #22d3ee;   
+  --ancho-maximo: 860px;     
 }
 
 
@@ -30,7 +42,6 @@ html, body { margin: 0; padding: 0; }
 Estilos base del <body>:
 - Aplica el tema (fondo/texto) usando variables globales.
 - Define una tipografía del sistema para rendimiento y coherencia.
-- Mejora la legibilidad con un interlineado cómodo.
 */
 body {
   background: var(--color-fondo);
@@ -74,20 +85,19 @@ Sección de presentación:
 
 /*
 =========================
-   5) HEADER (BARRA SUPERIOR)
-   - Layout en una fila; sticky para que quede visible al hacer scroll.
-========================= 
-Header:
-- Flex para colocar marca y navegación en una línea.
-- Sticky para fijarlo arriba al hacer scroll.
-- Fondo sólido y borde inferior sutil para separar del contenido.
+5) ENCABEZADO (BARRA SUPERIOR)
+=========================
+Esta sección da estilo a la parte superior de la página, donde aparece el nombre y el menú de navegación.
+
+- Se usa "flex" para colocar el nombre (marca) y el menú en la misma línea.
+- Se aplica un fondo sólido y una línea inferior suave para diferenciarlo del resto del contenido.
 */
+
 .encabezado{
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: .75rem 1rem;
-  position: sticky; top: 0;
   background: var(--color-fondo);
   border-bottom: 1px solid rgba(255,255,255,.12);
 }
@@ -102,6 +112,8 @@ Navegación principal:
 - Quita estilos por defecto de la lista.
 - Muestra los ítems en fila con espacio entre ellos.
 - Enlaces con área clicable cómoda y color de acento al hover.
+- Actúa en el ul de nav dentro del encabezado, en el a dentro de nav y dentro del encabezado y por ultimo actúa sobre el cursor (hover)
+  al pasar el ratón sobre a dentro de nav y dentro del encabezado.
 */
 .encabezado nav ul{
   list-style: none;
@@ -129,6 +141,7 @@ Navegación principal:
 Grid responsive:
 - Crea tantas columnas como quepan (min 260px por tarjeta).
 - Alinea el contenido de cada celda al inicio.
+- Actúa sobre el id portafolio
 */
 #portafolio{
   display: grid;
@@ -140,6 +153,7 @@ Grid responsive:
 /*
 Título del bloque:
 - Ocupa todo el ancho de la grid.
+- Apunta directamente al h2 dentro del id portafolio, no a TODOS los h2 que puedan haber dentro.
 */
 #portafolio > h2{
   grid-column: 1 / -1;
@@ -149,6 +163,7 @@ Título del bloque:
 Tarjeta de proyecto:
 - Borde y fondo sutiles con esquinas redondeadas.
 - Imagen adaptativa y sin “espacio fantasma”.
+- Actúa sobre la clase proyecto
 */
 .proyecto{
   border: 1px solid rgba(255,255,255,.15);
@@ -171,6 +186,7 @@ Tarjeta de proyecto:
 Formulario:
 - Ancho legible.
 - Grid para separar filas con gap consistente.
+- Actúa sobre el formulario dentro del id contacto.
 */
 #contacto form{
   max-width: 520px;
@@ -181,6 +197,7 @@ Formulario:
 /*
 Campo (label + control):
 - Agrupa con separación interna.
+- Actúa sobre todos los elementos con clase .campo que estén dentro del elemento con id contacto
 */
 #contacto .campo{
   display: grid;
@@ -190,6 +207,7 @@ Campo (label + control):
 /*
 Label:
 - Más peso para legibilidad y accesibilidad.
+- Actúa sobre todos los <label> que estén dentro de #contacto
 */
 #contacto label{
   font-weight: 600;
@@ -198,6 +216,7 @@ Label:
 /*
 Inputs y textarea:
 - Llenan el ancho, estilo acorde al tema oscuro y buen contraste.
+- Todos los <input> que estén dentro del elemento con id="contacto" y todos los <textarea> que estén dentro de #contacto.
 */
 #contacto input,
 #contacto textarea{
@@ -212,6 +231,7 @@ Inputs y textarea:
 /*
 Foco:
 - Contorno de alto contraste y separado del borde (outline-offset).
+- El selector #contacto input:focus y #contacto textarea:focus aplica un contorno de color a los campos de entrada y texto del bloque #contacto cuando están enfocados.
 */
 #contacto input:focus,
 #contacto textarea:focus{
@@ -222,6 +242,7 @@ Foco:
 /*
 Botón:
 - Tamaño contenido, contraste alto y ligerísimo realce al hover.
+- Actúa sobre los botones dentro del id contacto.
 */
 #contacto button{
   width: fit-content;
@@ -233,6 +254,10 @@ Botón:
   font-weight: 700;
   cursor: pointer;
 }
+/*
+Botón:
+- Actúa sobre los botones dentro del id contacto al pasar el ratón por encima.
+*/
 #contacto button:hover{
   filter: brightness(1.05);
 }
@@ -245,6 +270,7 @@ Botón:
 ========================= 
 Contenedor del nav de footer:
 - Mismo ancho máximo que el main y centrado.
+- Actúa sobre el nav dentro del footer.
 */
 footer nav{
   max-width: var(--ancho-maximo);
@@ -255,6 +281,7 @@ footer nav{
 /*
 Lista de enlaces:
 - Horizontal, centrada y con salto de línea si no cabe.
+- Actúa sobre el ul dentro de el nav dentro del footer.
 */
 footer nav ul{
   list-style: none;
@@ -269,6 +296,7 @@ footer nav ul{
 /*
 Enlaces del footer:
 - Coherencia visual con el header; acento al hover.
+- Actúa sobre los a dentro de el nav dentro del footer.
 */
 footer nav a{
   color: var(--color-texto);
@@ -305,6 +333,7 @@ Oculta visualmente pero mantiene accesible a tecnologías asistivas.
 Bloque footer:
 - Separación respecto al contenido, fondo ligeramente más oscuro
   y línea superior sutil para delimitar.
+- Actúa sobre el footer.
 */
 footer{
   margin-top: 2rem;
@@ -316,6 +345,7 @@ footer{
 /*
 Sección interna:
 - Limita el ancho y añade padding cómodo.
+- Actúa sobre el section que sale directo del footer.
 */
 footer > section{
   max-width: var(--ancho-maximo);
@@ -326,10 +356,15 @@ footer > section{
 /*
 Interacción de enlaces:
 - Color de acento y leve fondo al pasar el ratón.
+- actúa sobre los a dentro de nav dentro del footer.
 */
 footer nav a{
   transition: color .2s ease, background-color .2s ease, transform .2s ease;
 }
+
+/*
+- actúa sobre los a dentro de nav dentro del footer al pasar el ratón.
+*/
 footer nav a:hover{
   color: var(--color-acento);
   background: rgba(255,255,255,.06);
@@ -337,23 +372,9 @@ footer nav a:hover{
 }
 
 /*
-Línea inferior de copyright (si la usas):
-- Separador punteado, tipografía un poco más pequeña y centrada.
-*/
-.footer__bottom{
-  border-top: 1px dashed rgba(255,255,255,.15);
-  margin-top: 1rem;
-  padding-top: .9rem;
-  font-size: .9rem;
-  color: rgba(229,231,235,.85);
-  text-align: center;
-}
-
-
-/*
 =========================
    12) RESPONSIVE FINO
-   - Ajuste de padding de enlaces en pantallas pequeñas.
+   - Ajuste de padding de enlaces en pantallas pequeñas como por ejemplo, móviles.
 =========================
 */
 @media (max-width: 480px){
